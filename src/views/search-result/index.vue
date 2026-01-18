@@ -4,97 +4,50 @@ import { ref, watch, onMounted, onUnmounted, nextTick } from "vue"
 import { useRoute } from "vue-router"
 import { Search } from "@element-plus/icons-vue"
 import { queryTechApi } from "@/api/insight"
-import type { SearchResultItem } from "@/api/insight/types"
+import type { SearchResultItem, QueryTechParams } from "@/api/insight/types"
+import usePaginationSearch from "@/hooks/usePaginationSearch"
 
 const route = useRoute()
 const searchKeyword = ref("")
-const searchResults = ref<SearchResultItem[]>([])
-const total = ref(0)
-const page = ref(1)
-const pageSize = ref(10)
-const isLoadingMore = ref(false) // 是否正在加载更多
-const isRefetching = ref(false) // 是否正在重新获取
-const hasMore = ref(true)
 
-const handleSearch = async (isLoadMore = false) => {
+// 使用分页 hook
+const {
+  data: searchResults,
+  total,
+  loading,
+  refreshing,
+  increasing,
+  hasMore,
+  noData,
+  setParam,
+  setRefreshing,
+  setIncreasing
+} = usePaginationSearch<SearchResultItem, QueryTechParams>(queryTechApi, {
+  keyword: ""
+})
+
+// 处理搜索
+const handleSearch = async () => {
   if (!searchKeyword.value.trim()) return
 
-  // 如果是加载更多，检查是否还有更多数据和是否正在加载
-  if (isLoadMore && (isLoadingMore.value || !hasMore.value)) {
-    console.log("加载更多被跳过：isLoadingMore=", isLoadingMore.value, "hasMore=", hasMore.value)
-    return
+  // 更新参数并触发刷新
+  setParam({ keyword: searchKeyword.value })
+
+  // 等待 DOM 更新后重置滚动位置到顶部
+  await nextTick()
+  if (scrollContainer) {
+    scrollContainer.scrollTop = 0
   }
 
-  // 如果是重新获取，检查是否正在重新获取
-  if (!isLoadMore && isRefetching.value) {
-    console.log("重新获取被跳过，正在进行中")
-    return
-  }
-
-  if (!isLoadMore) {
-    // 重新获取：先重置所有状态
-    page.value = 1
-    hasMore.value = true
-    total.value = 0
-    // 立即清空结果
-    searchResults.value = []
-    // 设置重新获取状态
-    isRefetching.value = true
-    console.log("开始重新获取，关键词:", searchKeyword.value, "page:", page.value)
-    // 等待 DOM 更新后重置滚动位置到顶部
-    await nextTick()
-    if (scrollContainer) {
-      scrollContainer.scrollTop = 0
-    }
-  } else {
-    // 加载更多
-    isLoadingMore.value = true
-    console.log("开始加载更多，当前页:", page.value)
-  }
-
-  try {
-    const response = await queryTechApi({
-      page: page.value,
-      pageSize: pageSize.value,
-      keyword: searchKeyword.value
-    })
-
-    console.log("搜索结果:", response)
-
-    if (response.data?.result) {
-      const newRecords = response.data.result.records || []
-
-      if (isLoadMore) {
-        // 加载更多：累加数据
-        searchResults.value = [...searchResults.value, ...newRecords]
-        console.log("累加数据后，总数:", searchResults.value.length)
-      } else {
-        // 重新获取：替换数据
-        searchResults.value = newRecords
-        console.log("重新获取数据，总数:", searchResults.value.length)
-      }
-
-      total.value = response.data.result.total || 0
-      hasMore.value = searchResults.value.length < total.value
-    }
-  } catch (error) {
-    console.error("搜索失败:", error)
-  } finally {
-    if (isLoadMore) {
-      isLoadingMore.value = false
-    } else {
-      isRefetching.value = false
-    }
-  }
+  setRefreshing(true)
 }
 
+// 加载更多
 const loadMore = () => {
-  // 只有在满足条件时才递增页码并加载
-  if (!hasMore.value || isLoadingMore.value || isRefetching.value) {
+  if (!hasMore.value || increasing.value || refreshing.value) {
     return
   }
-  page.value++
-  handleSearch(true)
+  setIncreasing(true)
 }
 
 const handleItemClick = (item: SearchResultItem) => {
@@ -162,7 +115,7 @@ onUnmounted(() => {
     </div>
 
     <!-- 搜索结果区域 -->
-    <div class="bg-white rounded-8px p-24px" v-loading="isRefetching">
+    <div class="bg-white rounded-8px p-24px" v-loading="refreshing">
       <div v-if="searchKeyword" class="mb-20px">
         <span class="text-14px text-#909399">搜索结果：</span>
         <span class="text-16px font-600">{{ searchKeyword }}</span>
@@ -199,7 +152,7 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <el-empty v-else-if="!isRefetching && searchKeyword" description="暂无搜索结果" />
+      <el-empty v-else-if="!refreshing && searchKeyword" description="暂无搜索结果" />
     </div>
   </div>
 </template>

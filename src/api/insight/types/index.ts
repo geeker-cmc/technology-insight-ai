@@ -113,6 +113,64 @@ export interface SearchParams {
   keyword: string
 }
 
+/** 查询技术请求参数 */
+export interface QueryTechParams {
+  /** 页码 */
+  page?: number
+  /** 每页数量 */
+  pageSize?: number
+  /** 搜索关键词 */
+  keyword?: string
+}
+
+/** 新闻查询请求参数 */
+export interface NewsQueryParams {
+  /** 开始日期 */
+  startDate: string
+  /** 结束日期 */
+  endDate: string
+}
+
+/** 新闻项 */
+export interface NewsItem {
+  /** 新闻ID */
+  id: number
+  /** 新闻日期 */
+  newsDate: string
+  /** 新闻标题 */
+  newsTitle: string
+  /** 新闻链接 */
+  newsUrl: string
+  /** 新闻内容 */
+  newsContent: string
+  /** 原始标题 */
+  originalTitle: string
+  /** 新闻来源 */
+  newsSource: string
+  /** 关键词 */
+  keyword: string
+  /** 类型 */
+  type: string
+  /** 摘要 */
+  summary: string
+  /** 创建时间 */
+  createTime: string
+  /** 更新时间 */
+  updateTime: string
+  /** 状态 */
+  status: string
+}
+
+/** 通用响应接口 */
+export interface CommonResponse<T = any> {
+  /** 状态码 */
+  code: number
+  /** 响应消息 */
+  message?: string
+  /** 响应数据 */
+  data: T
+}
+
 /** 热门机构项 */
 export interface HotAffiliation {
   /** 机构ID */

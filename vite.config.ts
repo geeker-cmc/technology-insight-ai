@@ -54,6 +54,13 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
           /** 是否允许跨域 */
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/landinn-api/, "")
+        },
+        "/new-api": {
+          target: "http://49.232.0.120:9777",
+          ws: true,
+          /** 是否允许跨域 */
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/new-api/, "")
         }
       },
       /** 预热常用文件，提高初始页面加载速度 */

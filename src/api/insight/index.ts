@@ -1,5 +1,8 @@
 import { insightRequest } from "@/utils/insight-service"
+import { request } from "@/utils/service"
 import type * as Insight from "./types"
+
+const new_api_url = import.meta.env.VITE_NEW_API
 
 /** 获取热门机构 */
 export function getHotAffiliationByFieldApi(fieldName: string) {
@@ -63,5 +66,14 @@ export function getTechNewsListApi(params: Insight.TechNewsListParams) {
       pageSize: params.pageSize,
       sortField: "time"
     }
+  })
+}
+
+/** 查询新闻管理 */
+export function queryNewsManageApi(params: Insight.NewsQueryParams) {
+  return request<Insight.CommonResponse<Insight.NewsItem[]>>({
+    url: `${new_api_url}/api/news/manage/query`,
+    method: "post",
+    data: params
   })
 }
