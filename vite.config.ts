@@ -47,6 +47,13 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
           /** 是否允许跨域 */
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/chat-api/, "")
+        },
+        "/landinn-api": {
+          target: "http://landinn--front--prod.webvpn.landinn.com",
+          ws: true,
+          /** 是否允许跨域 */
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/landinn-api/, "")
         }
       },
       /** 预热常用文件，提高初始页面加载速度 */
