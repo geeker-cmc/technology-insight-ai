@@ -99,9 +99,6 @@ const handleModuleClick = (module: any) => {
 onMounted(async () => {
   console.log("Dashboard mounted >>>>")
   try {
-    const result = await getHotAffiliationByFieldApi("test")
-    console.log("热门机构数据:", result)
-
     // 查询最近三天的新闻
     const now = new Date()
     const endDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")} 23:59:59`

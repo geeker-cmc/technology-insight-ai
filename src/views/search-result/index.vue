@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 defineOptions({ name: "SearchResult" })
 import { ref, watch, onMounted, onUnmounted, nextTick } from "vue"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { Search } from "@element-plus/icons-vue"
 import { queryTechApi } from "@/api/insight"
 import type { SearchResultItem, QueryTechParams } from "@/api/insight/types"
 import usePaginationSearch from "@/hooks/usePaginationSearch"
 
 const route = useRoute()
+const router = useRouter()
 const searchKeyword = ref("")
 
 // 使用分页 hook
@@ -51,8 +52,14 @@ const loadMore = () => {
 }
 
 const handleItemClick = (item: SearchResultItem) => {
-  const url = `http://landinn--front--prod.webvpn.landinn.com/tech?name=${encodeURIComponent(item.name)}&id=${item.id}`
-  window.open(url, "_blank")
+  const url = `http://lan.raycoding.com/tech?name=${encodeURIComponent(item.name)}&id=${item.id}`
+  // window.open(url, "_blank")
+  router.push({
+    name: "IframeView",
+    query: {
+      url: url
+    }
+  })
 }
 
 const handleScroll = (e: Event) => {

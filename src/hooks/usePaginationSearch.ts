@@ -19,7 +19,7 @@ const defaultPageParams = {
 
 export default function usePaginationSearch<T, P>(apiFun: APIFun<T, P>, initParam?: Partial<P>, defaultValue?: T[]) {
   // 设置默认分页参数
-  const param = ref({ ...defaultPageParams, ...initParam })
+  const param = ref<{ page?: number; pageSize?: number } & Partial<P>>({ ...defaultPageParams, ...initParam } as any)
   const data = ref<T[]>(defaultValue || [])
   const total = ref(0)
   const loading = ref(false)
@@ -65,12 +65,12 @@ export default function usePaginationSearch<T, P>(apiFun: APIFun<T, P>, initPara
 
       if (param.value.page === 1) {
         // 刷新：替换数据
-        data.value = records
+        data.value = records as T[]
         noData.value = totalCount === 0
       } else {
         // 加载更多：累加数据
         noData.value = false
-        data.value = [...data.value, ...records]
+        data.value = [...data.value, ...records] as T[]
       }
 
       total.value = totalCount
@@ -94,7 +94,7 @@ export default function usePaginationSearch<T, P>(apiFun: APIFun<T, P>, initPara
   return {
     param,
     setParam: (p: Partial<P>) => {
-      param.value = { ...param.value, ...p }
+      param.value = { ...param.value, ...p } as any
     },
     setIncreasing: (bool: boolean) => {
       increasing.value = bool
@@ -103,7 +103,11 @@ export default function usePaginationSearch<T, P>(apiFun: APIFun<T, P>, initPara
       refreshing.value = bool
     },
     updateList: (item: T, index: number) => {
-      data.value[index] = item
+      if (data.value && index >= 0 && index < data.value.length) {
+        const newData = [...data.value] as any[]
+        newData[index] = item
+        data.value = newData as any
+      }
     },
     error,
     data,

@@ -3,6 +3,7 @@ defineOptions({ name: "AdvancedTechForesight" })
 import { ref, onMounted } from "vue"
 import { getTechNewsListApi } from "@/api/insight"
 import type { HotNews } from "@/api/insight/types"
+import { useRouter } from "vue-router"
 
 interface TechCard {
   id: string
@@ -41,7 +42,7 @@ const techCards = ref<TechCard[]>([
     updateTime: ""
   }
 ])
-
+const router = useRouter()
 /** 获取技术新闻数据 */
 const fetchTechNews = async (card: TechCard) => {
   try {
@@ -70,8 +71,13 @@ const handleNewsClick = (event: Event, news: HotNews) => {
 
 /** 处理卡片点击，跳转到技术详情页 */
 const handleCardClick = (card: TechCard) => {
-  const url = `http://landinn--front--prod.webvpn.landinn.com/tech?name=${encodeURIComponent(card.title)}&id=${card.id}`
-  window.open(url, "_blank")
+  const techUrl = `http://lan.raycoding.com/tech?name=${encodeURIComponent(card.title)}&id=${card.id}`
+  router.push({
+    path: "/iframe-view",
+    query: {
+      url: techUrl
+    }
+  })
 }
 
 onMounted(async () => {

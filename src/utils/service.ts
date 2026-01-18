@@ -6,8 +6,8 @@ import { getToken } from "./cache/cookies"
 
 /** 退出登录并强制刷新页面（会重定向到登录页） */
 function logout() {
-  // useUserStore().logout()
-  // location.reload()
+  useUserStore().logout()
+  location.reload()
 }
 
 /** 创建请求实例 */

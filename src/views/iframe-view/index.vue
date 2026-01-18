@@ -8,6 +8,7 @@ const loading = ref(true)
 
 /** 从路由查询参数获取 URL */
 const iframeUrl = computed(() => {
+  console.log("router", route.query.url)
   return (route.query.url as string) || ""
 })
 
@@ -32,10 +33,13 @@ watch(
         <i class="ep:loading" />
       </el-icon>
     </div>
-    <iframe v-if="iframeUrl" :src="iframeUrl" class="w-full h-full border-none" @load="handleLoad" />
-    <div v-else class="w-full h-full flex items-center justify-center text-14px text-#909399">
-      未提供有效的 URL 参数
-    </div>
+    <iframe
+      v-if="iframeUrl"
+      :src="iframeUrl"
+      class="w-full border-none"
+      style="height: calc(100% + 70px); margin-top: -70px"
+      @load="handleLoad"
+    />
   </div>
 </template>
 

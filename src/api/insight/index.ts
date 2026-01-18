@@ -9,7 +9,8 @@ export function getHotAffiliationByFieldApi(fieldName: string) {
   return insightRequest<Insight.InsightResponse<Insight.HotAffiliation[]>>({
     url: "/backend/tuijian-api/tech/getHotAffiliationByField",
     method: "get",
-    params: { fieldName }
+    params: { fieldName },
+    withCredentials: true
   })
 }
 
@@ -17,7 +18,8 @@ export function getHotAffiliationByFieldApi(fieldName: string) {
 export function getTechnologyHotTagListApi() {
   return insightRequest<Insight.InsightResponse<Insight.TechnologyHotTag[]>>({
     url: "/backend/tuijian-api/tech/getTechnologyHotTagList",
-    method: "get"
+    method: "get",
+    withCredentials: true
   })
 }
 
@@ -26,7 +28,8 @@ export function getHotTechnologyByFieldApi(fieldName: string) {
   return insightRequest<Insight.InsightResponse<Insight.HotTechnology[]>>({
     url: "/backend/tuijian-api/tech/getHotTechnologyByField",
     method: "get",
-    params: { fieldName }
+    params: { fieldName },
+    withCredentials: true
   })
 }
 
@@ -35,7 +38,8 @@ export function getHotNewsByFieldApi(keywords: string[]) {
   return insightRequest<Insight.InsightResponse<Insight.HotNews[]>>({
     url: "/backend/tuijian-api/tech/getHotNewsByField",
     method: "post",
-    data: { keywords }
+    data: { keywords },
+    withCredentials: true
   })
 }
 
@@ -44,7 +48,8 @@ export function getHotScholarByFieldApi(fieldName: string) {
   return insightRequest<Insight.InsightResponse<Insight.HotScholar[]>>({
     url: "/backend/tuijian-api/tech/getHotScholarByField",
     method: "get",
-    params: { fieldName }
+    params: { fieldName },
+    withCredentials: true
   })
 }
 
@@ -53,7 +58,8 @@ export function queryTechApi(params: Insight.SearchParams) {
   return insightRequest<Insight.InsightResponse<{ result: Insight.PaginationResponse<Insight.SearchResultItem> }>>({
     url: "/backend/tuijian-api/tech/query",
     method: "post",
-    data: params
+    data: params,
+    withCredentials: true
   })
 }
 /** 获取技术新闻列表 */
@@ -65,7 +71,8 @@ export function getTechNewsListApi(params: Insight.TechNewsListParams) {
       page: params.page,
       pageSize: params.pageSize,
       sortField: "time"
-    }
+    },
+    withCredentials: true
   })
 }
 

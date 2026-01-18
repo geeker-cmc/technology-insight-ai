@@ -35,7 +35,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       /** 接口代理 */
       proxy: {
         "/test-api": {
-          target: "https://compass-api.raycoding.com/",
+          target: "http://49.232.0.120:9527",
           ws: true,
           /** 是否允许跨域 */
           changeOrigin: true,
@@ -49,7 +49,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
           rewrite: (path) => path.replace(/^\/chat-api/, "")
         },
         "/landinn-api": {
-          target: "http://landinn--front--prod.webvpn.landinn.com",
+          target: "http://lan.raycoding.com",
           ws: true,
           /** 是否允许跨域 */
           changeOrigin: true,

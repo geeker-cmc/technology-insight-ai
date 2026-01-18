@@ -24,7 +24,9 @@ function logout() {
 /** 创建 Insight 服务请求实例 */
 function createInsightService() {
   // 创建一个 axios 实例命名为 insightService
-  const insightService = axios.create()
+  const insightService = axios.create({
+    withCredentials: true
+  })
   // 请求拦截
   insightService.interceptors.request.use(
     (config) => {

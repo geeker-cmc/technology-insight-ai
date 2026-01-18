@@ -8,8 +8,10 @@ import {
   getHotScholarByFieldApi,
   getHotAffiliationByFieldApi
 } from "@/api/insight"
+import { useRouter } from "vue-router"
 import type { TechnologyHotTag, HotTechnology, HotNews, HotScholar, HotAffiliation } from "@/api/insight/types"
 
+const router = useRouter()
 const selectedTech = ref("")
 const techOptions = ref<TechnologyHotTag[]>([])
 const hotTechs = ref<HotTechnology[]>([])
@@ -22,30 +24,6 @@ const selectedTechName = computed(() => {
   const tech = techOptions.value.find((item) => item.id === selectedTech.value)
   return tech?.name || ""
 })
-
-const hotTechsData = [
-  "GPT",
-  "生成式人工智能",
-  "边缘计算",
-  "特征提取",
-  "入侵识别",
-  "知识图谱",
-  "图像分割",
-  "异常检测",
-  "MuZero",
-  "下一代VR/AR实时全息近眼显示...",
-  "计算机视觉",
-  "自然语言处理",
-  "传感器",
-  "人形机器人",
-  "自然语言理解",
-  "脉冲神经网络",
-  "量子芯片",
-  "伺服驱动器",
-  "谐波减速器",
-  "压力传感器"
-]
-
 /** 获取技术分类列表 */
 const fetchTechOptions = async () => {
   try {
@@ -124,7 +102,7 @@ const handleNewsClick = (news: HotNews) => {
 /** 处理人才点击，跳转到学者详情页 */
 const handleScholarClick = (scholar: HotScholar) => {
   if (scholar.id) {
-    const url = `http://landinn--front--prod.webvpn.landinn.com/scholar/${scholar.id}`
+    const url = `http://lan.raycoding.com/scholar/${scholar.id}`
     window.open(url, "_blank")
   }
 }
@@ -132,8 +110,14 @@ const handleScholarClick = (scholar: HotScholar) => {
 /** 处理热门技术点击，跳转到技术详情页 */
 const handleTechClick = (tech: HotTechnology) => {
   if (tech.id && tech.name) {
-    const url = `http://landinn--front--prod.webvpn.landinn.com/tech?name=${encodeURIComponent(tech.name)}&id=${tech.id}`
-    window.open(url, "_blank")
+    const url = `http://lan.raycoding.com/tech?name=${encodeURIComponent(tech.name)}&id=${tech.id}`
+    // window.open(url, "_blank")
+    router.push({
+      name: "IframeView",
+      query: {
+        url: url
+      }
+    })
   }
 }
 
