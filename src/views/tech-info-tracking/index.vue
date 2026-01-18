@@ -103,7 +103,12 @@ const handleNewsClick = (news: HotNews) => {
 const handleScholarClick = (scholar: HotScholar) => {
   if (scholar.id) {
     const url = `http://lan.raycoding.com/scholar/${scholar.id}`
-    window.open(url, "_blank")
+    router.push({
+      path: "/iframe-view",
+      query: {
+        url: url
+      }
+    })
   }
 }
 
@@ -113,7 +118,7 @@ const handleTechClick = (tech: HotTechnology) => {
     const url = `http://lan.raycoding.com/tech?name=${encodeURIComponent(tech.name)}&id=${tech.id}`
     // window.open(url, "_blank")
     router.push({
-      name: "IframeView",
+      path: "/iframe-view",
       query: {
         url: url
       }

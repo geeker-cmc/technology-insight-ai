@@ -97,7 +97,6 @@ export const constantRoutes: RouteRecordRaw[] = [
       {
         path: "iframe-view",
         component: () => import("@/views/iframe-view/index.vue"),
-        name: "IframeView",
         meta: {
           title: "",
           hidden: true

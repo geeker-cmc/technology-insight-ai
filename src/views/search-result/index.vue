@@ -55,7 +55,7 @@ const handleItemClick = (item: SearchResultItem) => {
   const url = `http://lan.raycoding.com/tech?name=${encodeURIComponent(item.name)}&id=${item.id}`
   // window.open(url, "_blank")
   router.push({
-    name: "IframeView",
+    path: "/iframe-view",
     query: {
       url: url
     }
