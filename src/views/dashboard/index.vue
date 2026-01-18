@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 defineOptions({ name: "Dashboard" })
 import { ref, onMounted } from "vue"
+import { useRouter } from "vue-router"
 import { Search } from "@element-plus/icons-vue"
 import { getHotAffiliationByFieldApi } from "@/api/insight"
 
+const router = useRouter()
 const searchValue = ref("")
 
 const tabs = ["人工智能", "半导体", "新能源", "微识图谱", "量子计算", "智能制造", "新材料", "航空航天"]
@@ -11,38 +13,72 @@ const tabs = ["人工智能", "半导体", "新能源", "微识图谱", "量子�
 const modules = [
   {
     icon: "📍",
-    title: "科技情报图谱",
-    description: "全域、关联、精准的技术情报发现"
+    title: "科技情报跟踪",
+    description: "全域、关联、精准的技术情报发现",
+    path: "/tech-info-tracking"
   },
   {
     icon: "🎯",
     title: "技术布局扫描",
-    description: "揭示布局、行业趋势、企业发展研发管理"
+    description: "揭示布局、行业趋势、企业发展研发管理",
+    path: "/search-result"
   },
   {
     icon: "👁",
     title: "前沿技术预见",
-    description: "技术政策趋势对当前政策研判"
+    description: "技术政策趋势对当前政策研判",
+    path: "/advanced-tech-foresight"
   },
   {
     icon: "🛡",
     title: "政策分析",
-    description: "政策视觉导向视情报"
+    description: "政策视觉导向视情报",
+    path: ""
   },
   {
     icon: "🗺",
     title: "知识图谱探索",
-    description: "交互式组织 X 兴图构"
+    description: "交互式组织 X 兴图构",
+    path: ""
   },
   {
     icon: "📊",
     title: "智能报告生成",
-    description: "AI Agent 生成完整报告"
+    description: "AI Agent 生成完整报告",
+    path: "http://research.lin.iol8.cn/dashboard"
   }
 ]
 
 const handleSearch = () => {
-  console.log("搜索:", searchValue.value)
+  if (searchValue.value.trim()) {
+    router.push({
+      path: "/search-result",
+      query: {
+        keyword: searchValue.value
+      }
+    })
+  }
+}
+
+const handleTabClick = (tab: string) => {
+  router.push({
+    path: "/search-result",
+    query: {
+      keyword: tab
+    }
+  })
+}
+
+const handleModuleClick = (module: any) => {
+  if (module.path) {
+    // 如果是外部链接，在新标签页打开
+    if (module.path.startsWith("http://") || module.path.startsWith("https://")) {
+      window.open(module.path, "_blank")
+    } else {
+      // 内部路由跳转
+      router.push(module.path)
+    }
+  }
 }
 
 onMounted(async () => {
@@ -77,6 +113,7 @@ onMounted(async () => {
           v-for="tab in tabs"
           :key="tab"
           class="px-20px py-8px rounded-4px cursor-pointer transition-all border-none bg-#f0f2f5 text-#666 hover:bg-#e6f4ff hover:text-#409eff"
+          @click="handleTabClick(tab)"
         >
           {{ tab }}
         </button>
@@ -89,6 +126,7 @@ onMounted(async () => {
         v-for="(module, index) in modules"
         :key="index"
         class="bg-white rounded-8px p-30px cursor-pointer transition-shadow hover:shadow-lg"
+        @click="handleModuleClick(module)"
       >
         <div class="text-40px mb-20px">{{ module.icon }}</div>
         <h3 class="text-18px font-600 mb-10px">{{ module.title }}</h3>

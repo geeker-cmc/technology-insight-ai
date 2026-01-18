@@ -9,10 +9,10 @@ import Cookies from "js-cookie"
 function setInsightCookies() {
   Cookies.set(
     "_webvpn_key",
-    "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiY3Vpd2VpZnUwMSIsImdyb3VwcyI6WzIsMjJdLCJpYXQiOjE3Njg2MzQxNTcsImV4cCI6MTc2ODcyMDU1N30.VoL4RfGZ9UGRiaYMSRq-XJFXvmpBtGviB_3le2ROM4Q"
+    "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiY3Vpd2VpZnUwMSIsImdyb3VwcyI6WzIsMjJdLCJpYXQiOjE3Njg3MjE4NTcsImV4cCI6MTc2ODgwODI1N30.t6huK0Xmg4B4t8kjX-x2Ta2LFGG0BrPZAxHKqTj5W7Q"
   )
-  Cookies.set("webvpn_username", "cuiweifu01%7C1768634157%7C93eb1a3bdf4756ccbfe600df5605e7ecd52e7541")
-  Cookies.set("JSESSIONID", "BB8974EB73526C756C72B00621A7EA8D")
+  Cookies.set("webvpn_username", "cuiweifu01%7C1768721857%7C377161d8d002767a78294e030e873a708ddac91f")
+  Cookies.set("JSESSIONID", "9B6191E874B00B42DA3FB5ECF30B3C21")
 }
 
 /** 退出登录并强制刷新页面（会重定向到登录页） */

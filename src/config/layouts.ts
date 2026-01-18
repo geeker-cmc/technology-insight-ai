@@ -40,7 +40,7 @@ const defaultSettings: LayoutSettings = {
   showTagsView: true,
   fixedHeader: true,
   showFooter: false,
-  showLogo: true,
+  showLogo: false,
   showNotify: false,
   showThemeSwitch: false,
   showScreenfull: false,

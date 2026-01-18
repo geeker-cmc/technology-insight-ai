@@ -66,6 +66,42 @@ export const constantRoutes: RouteRecordRaw[] = [
           affix: true,
           keepAlive: true
         }
+      },
+      {
+        path: "tech-info-tracking",
+        component: () => import("@/views/tech-info-tracking/index.vue"),
+        meta: {
+          title: "科技情报跟踪页",
+          hidden: true,
+          keepAlive: true
+        }
+      },
+      {
+        path: "search-result",
+        component: () => import("@/views/search-result/index.vue"),
+        meta: {
+          title: "搜索结果",
+          hidden: true,
+          keepAlive: true
+        }
+      },
+      {
+        path: "advanced-tech-foresight",
+        component: () => import("@/views/advanced-tech-foresight/index.vue"),
+        meta: {
+          title: "前沿技术预见",
+          hidden: true,
+          keepAlive: true
+        }
+      },
+      {
+        path: "iframe-view",
+        component: () => import("@/views/iframe-view/index.vue"),
+        meta: {
+          title: "iframe页面",
+          hidden: true,
+          keepAlive: false
+        }
       }
     ]
   },

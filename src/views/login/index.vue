@@ -4,21 +4,21 @@
       <div class="relative flex mx-auto min-h-100vh">
         <div class="left flex-1 bg-gray-500 bg-opacity-20 relative p-30px lt-xl:hidden">
           <div class="flex items-center relative text-white">
-            <img src="@/assets/layouts/logo.png" alt="" class="w-48px h-48px mr-10px" />
-            <span class="text-20px font-bold">新译科技</span>
+            <!-- <img src="@/assets/layouts/logo.png" alt="" class="w-48px h-48px mr-10px" /> -->
+            <span class="text-20px font-bold">科技洞察</span>
           </div>
           <div class="flex justify-center items-center h-[calc(100%-60px)]">
             <TransitionGroup appear tag="div" enter-active-class="animate__animated animate__bounceInLeft">
               <img src="@/assets/login/login-box-bg.svg" key="1" alt="" class="w-350px" />
-              <div class="text-3xl text-white" key="2">欢迎使用投资招引AI平台</div>
+              <div class="text-3xl text-white" key="2">欢迎使用科技洞察AI平台</div>
             </TransitionGroup>
           </div>
         </div>
         <div class="flex-1 p-30px lt-sm:p-10px dark:bg-[var(--login-bg-color)] relative">
           <div class="flex justify-between items-center text-white at-2xl:justify-end at-xl:justify-end">
             <div class="flex items-center at-2xl:hidden at-xl:hidden">
-              <img src="@/assets/layouts/logo.png" alt="" class="w-48px h-48px mr-10px" />
-              <span class="text-20px font-bold">新译科技</span>
+              <!-- <img src="@/assets/layouts/logo.png" alt="" class="w-48px h-48px mr-10px" /> -->
+              <span class="text-20px font-bold">科技洞察</span>
             </div>
 
             <div class="flex justify-end items-center space-x-10px">
