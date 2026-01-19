@@ -112,12 +112,28 @@ onUnmounted(() => {
   <div class="w-full h-full overflow-auto bg-#f5f5f5 p-20px">
     <!-- 搜索区域 -->
     <div class="flex flex-col items-center pt-40px pb-30px bg-white rounded-8px mb-20px">
-      <div class="flex w-600px">
-        <el-input v-model="searchKeyword" placeholder="搜索资源库内容" size="large" @keyup.enter="() => handleSearch()">
-          <template #append>
-            <el-button type="primary" :icon="Search" @click="() => handleSearch()" />
-          </template>
-        </el-input>
+      <div class="relative w-full max-w-720px group">
+        <!-- 搜索图标 -->
+        <div
+          class="absolute left-24px top-1/2 -translate-y-1/2 text-22px text-gray-400 group-focus-within:text-[#409eff] transition-colors duration-300 z-10 pointer-events-none flex items-center"
+        >
+          <el-icon><Search /></el-icon>
+        </div>
+
+        <input
+          v-model="searchKeyword"
+          placeholder="搜索您感兴趣的科技情报、人才、政策..."
+          class="w-full h-68px pl-64px pr-120px bg-white border-2 border-transparent rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.06)] text-17px text-gray-700 outline-none transition-all duration-300 placeholder:text-gray-400 hover:shadow-[0_16px_48px_rgba(0,0,0,0.1)] focus:shadow-[0_16px_48px_rgba(64,158,255,0.15)] focus:border-[#409eff]/20"
+          @keyup.enter="() => handleSearch()"
+        />
+
+        <!-- 按钮 -->
+        <button
+          class="absolute right-8px top-8px bottom-8px px-32px bg-[#409eff] text-white text-16px font-600 rounded-full transition-all duration-300 hover:bg-[#66b1ff] hover:shadow-[0_4px_12px_rgba(64,158,255,0.4)] hover:-translate-y-1px active:scale-95 active:translate-y-0 flex items-center justify-center cursor-pointer border-none tracking-wide"
+          @click="() => handleSearch()"
+        >
+          搜索
+        </button>
       </div>
     </div>
 
