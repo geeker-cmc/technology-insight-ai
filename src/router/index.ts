@@ -61,7 +61,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/dashboard/index.vue"),
         name: "Dashboard",
         meta: {
-          title: "首页",
+          title: "科技速览",
           svgIcon: "dashboard",
           affix: true,
           keepAlive: true
@@ -95,6 +95,15 @@ export const constantRoutes: RouteRecordRaw[] = [
         }
       },
       {
+        path: "policy-analysis",
+        component: () => import("@/views/policy-analysis/index.vue"),
+        meta: {
+          title: "政策分析",
+          hidden: true,
+          keepAlive: true
+        }
+      },
+      {
         path: "iframe-view",
         component: () => import("@/views/iframe-view/index.vue"),
         meta: {
@@ -104,539 +113,158 @@ export const constantRoutes: RouteRecordRaw[] = [
       }
     ]
   },
-  // {
-  //   path: "/industry-analyze",
-  //   component: Layouts,
-  //   redirect: "/industry-analyze/planning",
-  //   meta: {
-  //     title: "产业研判",
-  //     elIcon: "TrendCharts",
-  //     keepAlive: true
-  //   },
-  //   children: [
-  //     {
-  //       path: "planning",
-  //       component: () => import("@/views/iframe/index.vue"),
-  //       name: "IndustryPlanning",
-  //       meta: {
-  //         title: "十五五规划产业",
-  //         iframeUrl: iframeUrl,
-  //         keepAlive: true
-  //       }
-  //     },
-  //     {
-  //       path: "emerging",
-  //       component: () => import("@/views/iframe/index.vue"),
-  //       name: "IndustryEmerging",
-  //       meta: {
-  //         title: "新兴产业",
-  //         iframeUrl: iframeUrl,
-  //         keepAlive: true
-  //       }
-  //     }
-  //   ]
-  // },
   {
-    path: "/industry-map",
+    path: "/talent-portrait",
     component: Layouts,
-    redirect: "/industry-map/country",
-    meta: {
-      title: "产业图谱",
-      elIcon: "Connection"
-    },
     children: [
       {
-        path: "country",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "IndustryMapCountry",
+        path: "",
+        component: () => import("@/views/talent-portrait/index.vue"),
+        name: "TalentPortrait",
         meta: {
-          title: "全国图谱",
-          page: "/cyfx/industry-chart/industry-panorama",
-          keepAlive: true
-        }
-      },
-      {
-        path: "region",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "IndustryMapRegion",
-        meta: {
-          title: "区域图谱",
-          page: "/cyfx/industry-chart/industry-area",
+          title: "人才画像",
+          elIcon: "Avatar",
           keepAlive: true
         }
       }
     ]
   },
   {
-    path: "/competition-layout",
+    path: "/industry-mining",
     component: Layouts,
-    redirect: "/competition-layout/industry-chain",
+    redirect: "/industry-mining/chain-construction",
     meta: {
-      title: "竞争格局",
-      elIcon: "Grid"
-    },
-    children: [
-      {
-        path: "industry-chain",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "CompetitionIndustryChain",
-        meta: {
-          title: "产业链地图",
-          page: "/cyfx/industry-map/industry-chain",
-          keepAlive: true
-        }
-      },
-      {
-        path: "supply-chain",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "CompetitionSupplyChain",
-        meta: {
-          title: "供应链地图",
-          page: "/cyfx/industry-map/supply-chain",
-          keepAlive: true
-        }
-      },
-      {
-        path: "technology-chain",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "CompetitionTechnologyChain",
-        meta: {
-          title: "技术链地图",
-          page: "/cyfx/industry-map/technology-chain",
-          keepAlive: true
-        }
-      },
-      {
-        path: "sales-chain",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "CompetitionSalesChain",
-        meta: {
-          title: "销售链地图",
-          page: "/cyfx/industry-map/sales-chain",
-          keepAlive: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/regional-comparison",
-    component: Layouts,
-    redirect: "/regional-comparison/industry",
-    meta: {
-      title: "区域对标",
-      elIcon: "Histogram"
-    },
-    children: [
-      {
-        path: "industry",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "RegionalComparisonIndustry",
-        meta: {
-          title: "产业对比分析",
-          page: "/cyfx/benchmarking-area/industry-contrast",
-          keepAlive: true
-        }
-      },
-      {
-        path: "advantage",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "RegionalComparisonAdvantage",
-        meta: {
-          title: "产业占比分析",
-          page: "/cyfx/benchmarking-area/industry-rate",
-          keepAlive: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/park-list",
-    component: Layouts,
-    redirect: "/park-list/index",
-    children: [
-      {
-        path: "index",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "ParkList",
-        meta: {
-          title: "园区榜单",
-          page: "/cyfx/park-map/park-hot",
-          keepAlive: true,
-          elIcon: "Medal"
-        }
-      }
-    ]
-  },
-  {
-    path: "/operation-analysis",
-    component: Layouts,
-    redirect: "/operation-analysis/industry-overview",
-    meta: {
-      title: "运行分析",
+      title: "产业挖掘",
       elIcon: "DataAnalysis"
     },
     children: [
       {
-        path: "industry-overview",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "OperationIndustryOverview",
+        path: "chain-construction",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "IndustryChainConstruction",
         meta: {
-          title: "产业总览",
-          page: "/cyfx/operation-analysis/industry-overview",
+          title: "产业链构建",
           keepAlive: true
         }
       },
       {
-        path: "enterprise-layout",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "OperationEnterpriseLayout",
-        meta: {
-          title: "企业布局",
-          page: "/cyfx/operation-analysis/enterprise-layout",
-          keepAlive: true
-        }
-      },
-      {
-        path: "industry-chain-evaluation",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "OperationIndustryChainEvaluation",
-        meta: {
-          title: "产业链整体评价",
-          page: "/cyfx/operation-analysis/industry-evaluate",
-          keepAlive: true
-        }
-      },
-      {
-        path: "industry-chain-analysis",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "OperationIndustryChainAnalysis",
-        meta: {
-          title: "产业链载体分析",
-          page: "/cyfx/operation-analysis/industry-carrier-analyse",
-          keepAlive: true
-        }
-      },
-      {
-        path: "industry-chain-strength",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "OperationIndustryChainStrength",
+        path: "strategic-analysis",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "IndustryStrategicAnalysis",
         meta: {
           title: "产业链强弱分析",
-          page: "/cyfx/operation-analysis/industry-depend",
+          keepAlive: true
+        }
+      },
+      {
+        path: "trend-analysis",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "IndustryTrendAnalysis",
+        meta: {
+          title: "产业趋势分析",
+          keepAlive: true
+        }
+      },
+      {
+        path: "regional-analysis",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "RegionalIndustryAnalysis",
+        meta: {
+          title: "区域产业分析",
           keepAlive: true
         }
       }
     ]
   },
   {
-    path: "/investment-model",
+    path: "/enterprise-investment",
     component: Layouts,
-    redirect: "/investment-model/industry-chain",
+    redirect: "/enterprise-investment/panorama",
     meta: {
-      title: "招商模型",
-      elIcon: "Management"
+      title: "企业智投",
+      elIcon: "TrendCharts"
     },
     children: [
       {
-        path: "industry-chain",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "InvestmentModelIndustryChain",
+        path: "panorama",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "EnterprisePanorama",
         meta: {
-          title: "产业链招商",
-          page: "/jzzs/industry-chain",
+          title: "企业全景",
           keepAlive: true
         }
       },
       {
-        path: "industry-map",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "InvestmentModelIndustryMap",
+        path: "state-owned-layout",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "StateOwnedLayout",
         meta: {
-          title: "产业地图招商",
-          page: "/jzzs/cydt",
+          title: "央企布局",
           keepAlive: true
         }
       },
       {
-        path: "strong-chain",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "InvestmentModelStrongChain",
+        path: "potential-enterprises",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "PotentialEnterprises",
         meta: {
-          title: "强延补链招商",
-          page: "/jzzs/ses-chain",
-          keepAlive: true
-        }
-      },
-      {
-        path: "related-chain",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "InvestmentModelRelatedChain",
-        meta: {
-          title: "关系链招商",
-          page: "/jzzs/relation-chain",
-          keepAlive: true
-        }
-      },
-      {
-        path: "similar",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "InvestmentModelSimilar",
-        meta: {
-          title: "以商招商",
-          page: "/jzzs/local-support",
-          keepAlive: true
-        }
-      },
-      {
-        path: "famous-enterprise",
-        component: () => import("@/views/parent-page/index.vue"),
-        redirect: "/investment-model/famous-enterprise/world-500",
-        meta: {
-          title: "名企榜单招商"
-        },
-        children: [
-          {
-            path: "world-500",
-            component: () => import("@/views/iframe/index.vue"),
-            name: "InvestmentModelFamousEnterpriseWorld500",
-            meta: {
-              title: "世界500强",
-              page: "/jzzs/famous/top500-42",
-              keepAlive: true
-            }
-          },
-          {
-            path: "china-500",
-            component: () => import("@/views/iframe/index.vue"),
-            name: "InvestmentModelFamousEnterpriseChina500",
-            meta: {
-              title: "中国500强",
-              page: "/jzzs/famous/top500-45",
-              keepAlive: true
-            }
-          },
-          {
-            path: "china-private-500",
-            component: () => import("@/views/iframe/index.vue"),
-            name: "InvestmentModelFamousEnterpriseChinaPrivate500",
-            meta: {
-              title: "中国民企500强",
-              page: "/jzzs/famous/top500-47",
-              keepAlive: true
-            }
-          },
-          {
-            path: "china-innovation-100",
-            component: () => import("@/views/iframe/index.vue"),
-            name: "InvestmentModelFamousEnterpriseChinaInnovation100",
-            meta: {
-              title: "中国创新100强",
-              page: "/jzzs/famous/top500-66",
-              keepAlive: true
-            }
-          }
-        ]
-      },
-      {
-        path: "leading-enterprise",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "InvestmentModelLeadingEnterprise",
-        meta: {
-          title: "龙头骨干招商",
-          page: "/jzzs/inventory/faucet",
-          keepAlive: true
-        }
-      },
-      {
-        path: "qualified-enterprise",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "InvestmentModelQualifiedEnterprise",
-        meta: {
-          title: "资质企业招商",
-          page: "/jzzs/inventory/leading",
-          keepAlive: true
-        }
-      },
-      {
-        path: "investment-fund",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "InvestmentModelInvestmentFund",
-        meta: {
-          title: "投行基金招商",
-          page: "/jzzs/inventory/ib",
-          keepAlive: true
-        }
-      },
-      {
-        path: "research-institute",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "InvestmentModelResearchInstitute",
-        meta: {
-          title: "科研机构招商",
-          page: "/jzzs/inventory/organization",
-          keepAlive: true
-        }
-      },
-      {
-        path: "chain-master",
-        component: () => import("@/views/parent-page/index.vue"),
-        redirect: "/investment-model/chain-master/supporting",
-        meta: {
-          title: "链主适配招商"
-        },
-        children: [
-          {
-            path: "supporting",
-            component: () => import("@/views/iframe/index.vue"),
-            name: "InvestmentModelChainMasterSupporting",
-            meta: {
-              title: "链主配套招商",
-              page: "/jzzs/area-chain/faucet-matching",
-              keepAlive: true
-            }
-          },
-          {
-            path: "peer",
-            component: () => import("@/views/iframe/index.vue"),
-            name: "InvestmentModelChainMasterPeer",
-            meta: {
-              title: "链主同业招商",
-              page: "/jzzs/area-chain/faucet-analogy",
-              keepAlive: true
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    path: "/enterprise-portrait",
-    component: Layouts,
-    redirect: "/enterprise-portrait/overview",
-    meta: {
-      title: "企业塔望",
-      elIcon: "OfficeBuilding"
-    },
-    children: [
-      {
-        path: "overview",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "EnterprisePortraitOverview",
-        meta: {
-          title: "企业总览",
-          page: "/qyjc/enterprise-overview",
+          title: "潜力企业",
           keepAlive: true
         }
       },
       {
         path: "monitoring",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "EnterprisePortraitMonitoring",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "EnterpriseMonitoring",
         meta: {
           title: "企业监测",
-          page: "/qyjc/enterprise-monitoring",
-          keepAlive: true
-        }
-      },
-      {
-        path: "list",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "EnterprisePortraitList",
-        meta: {
-          title: "企业榜单",
-          page: "/qyjc/company-hot",
-          keepAlive: true
-        }
-      },
-      {
-        path: "selector",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "EnterprisePortraitSelector",
-        meta: {
-          title: "企业筛选器",
-          page: "/qyjc/enterprise-filter",
-          keepAlive: true
-        }
-      },
-      {
-        path: "portrait",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "EnterprisePortraitDetail",
-        meta: {
-          title: "企业画像",
-          page: "/qyjc/archives-home",
-          keepAlive: true
-        }
-      },
-      {
-        path: "evaluation",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "EnterprisePortraitEvaluation",
-        meta: {
-          title: "企业综合评价",
-          page: "/qyjc/synthesis",
           keepAlive: true
         }
       }
     ]
   },
   {
-    path: "/forecast-monitoring",
+    path: "/technology-scanning",
     component: Layouts,
-    redirect: "/forecast-monitoring/industry",
+    redirect: "/technology-scanning/knowledge-graph",
     meta: {
-      title: "预警监测",
-      elIcon: "Warning"
+      title: "技术扫描",
+      elIcon: "Monitor"
     },
     children: [
       {
-        path: "industry",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "ForecastMonitoringIndustry",
+        path: "knowledge-graph",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "TechnologyKnowledgeGraph",
         meta: {
-          title: "产业发展预警",
-          page: "/cydt/risk-warning/industry-dev-warning",
+          title: "技术图谱构建",
           keepAlive: true
         }
       },
       {
-        path: "enterprise",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "ForecastMonitoringEnterprise",
+        path: "frontier-mining",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "FrontierTechnologyMining",
         meta: {
-          title: "企业外迁预警",
-          page: "/cydt/risk-warning/out-migration-warning",
-          keepAlive: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/intelligence-dynamics",
-    component: Layouts,
-    redirect: "/intelligence-dynamics/news",
-    meta: {
-      title: "情报动态",
-      elIcon: "Notification"
-    },
-    children: [
-      {
-        path: "news",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "IntelligenceDynamicsNews",
-        meta: {
-          title: "资讯热点",
-          page: "/cydt/industry-news",
+          title: "前沿技术挖掘",
           keepAlive: true
         }
       },
       {
-        path: "policy",
-        component: () => import("@/views/iframe/index.vue"),
-        name: "IntelligenceDynamicsPolicy",
+        path: "hotspot-analysis",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "TechnologyHotspotAnalysis",
         meta: {
-          title: "政策规划",
-          page: "/cydt/industry-policy",
+          title: "技术热点分析",
+          keepAlive: true
+        }
+      },
+      {
+        path: "trend-prediction",
+        component: () => import("@/views/empty-page/index.vue"),
+        name: "TechnologyTrendPrediction",
+        meta: {
+          title: "技术趋势预判",
           keepAlive: true
         }
       }

@@ -3,6 +3,7 @@ import { request } from "@/utils/service"
 import type * as Insight from "./types"
 
 const new_api_url = import.meta.env.VITE_NEW_API
+const base_url = import.meta.env.VITE_BASE_API
 
 /** 获取热门机构 */
 export function getHotAffiliationByFieldApi(fieldName: string) {
@@ -82,5 +83,31 @@ export function queryNewsManageApi(params: Insight.NewsQueryParams) {
     url: `${new_api_url}/api/news/manage/query`,
     method: "post",
     data: params
+  })
+}
+
+/** 查询政策列表 */
+export function queryPolicyListApi(params: Insight.PolicyQueryParams) {
+  return request<{
+    code: number
+    message?: string
+    data: {
+      records: Insight.PolicyItem[]
+      total?: number
+    }
+  }>({
+    url: `${base_url}/api/policy/list`,
+    method: "post",
+    data: params
+  })
+}
+
+/** 查询人才列表 */
+export function queryTalentListApi(params: Insight.TalentQueryParams) {
+  return insightRequest<Insight.InsightResponse<{ result: Insight.PaginationResponse<Insight.TalentItem> }>>({
+    url: "/backend/tuijian-api/scholars/query/V3_3",
+    method: "post",
+    data: params,
+    withCredentials: true
   })
 }

@@ -48,7 +48,7 @@ const modules = [
     icon: "🛡",
     title: "政策分析",
     description: "政策解读与影响评估",
-    path: ""
+    path: "/policy-analysis"
   },
   {
     icon: "🗺",
@@ -106,7 +106,7 @@ onMounted(async () => {
     const startDateTime = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000)
     const startDate = `${startDateTime.getFullYear()}-${String(startDateTime.getMonth() + 1).padStart(2, "0")}-${String(startDateTime.getDate()).padStart(2, "0")} 00:00:00`
 
-    const newsResult = await queryNewsManageApi({ startDate, endDate })
+    const newsResult = await queryNewsManageApi({ startDate, endDate, status: "1" })
     console.log("最近三天新闻数据:", newsResult)
 
     // 保存前10条数据

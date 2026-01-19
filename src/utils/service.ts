@@ -39,6 +39,8 @@ function createService() {
         case 200:
           // 本系统采用 code === 0 来表示没有业务错误
           return apiData
+        case 0:
+          return apiData
         default:
           // 不是正确的 code
           ElMessage.error(apiData.message || "Error")

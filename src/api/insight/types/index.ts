@@ -75,6 +75,21 @@ export interface TechNewsListParams {
   pageSize: number
 }
 
+export interface PolicyQueryParams {
+  pageSize: number
+  page: number
+  category?: string
+}
+
+export interface PolicyItem {
+  createTime: string
+  title: string
+  departmentName: string
+  releaseTime: string
+  /** 政策摘要 */
+  textDigest: string
+}
+
 /** 搜索结果项 */
 export interface SearchResultItem {
   /** ID */
@@ -129,6 +144,8 @@ export interface NewsQueryParams {
   startDate: string
   /** 结束日期 */
   endDate: string
+
+  status: string
 }
 
 /** 新闻项 */
@@ -318,4 +335,36 @@ export interface HotScholar {
     achievementInfo?: string
     statusInfo?: string
   }
+}
+
+/** 人才查询请求参数 */
+export interface TalentQueryParams {
+  /** 页码 */
+  page: number
+  /** 每页数量 */
+  pageSize: number
+  /** 搜索关键词 */
+  keyword?: string
+}
+
+/** 人才项 */
+export interface TalentItem {
+  /** 姓名 */
+  name: string
+  /** ID */
+  id: string
+  /** 头像 */
+  headPortrait?: string
+  /** 职称 */
+  professionalTitle?: string
+  /** 职称和奖项标签 */
+  titleAndAwardTags?: string[]
+  /** 所属机构名称 */
+  affiliationName?: string
+  /** 专业标签 */
+  majorTags?: string[]
+  /** 技术标签 */
+  technologyLabelTags?: string[]
+
+  city: string
 }
