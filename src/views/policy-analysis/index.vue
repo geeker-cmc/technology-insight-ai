@@ -29,7 +29,7 @@ const formatDate = (dateStr: string) => {
 // 科技领域分类
 const categories = ["太空算力", "量子信息", "核聚变", "脑机接口", "光伏"]
 
-const selectedCategory = ref<string>("")
+const selectedCategory = ref<string>("太空算力")
 
 // 处理分类选择
 const handleCategoryChange = (category: string) => {
@@ -73,7 +73,8 @@ const handleScroll = (e: Event) => {
 let scrollContainer: HTMLElement | null = null
 
 onMounted(() => {
-  // 触发初始加载
+  // 设置默认分类并触发初始加载
+  setParam({ category: selectedCategory.value })
   setRefreshing(true)
 
   // 延迟添加滚动监听，确保DOM已渲染
