@@ -195,7 +195,7 @@ const loadMore = () => {
 // 点击人才详情
 const handleTalentClick = (talent: TalentItem) => {
   // 跳转到iframe-view页面，传递人才详情URL
-  const url = `http://landinn--front--prod.webvpn.landinn.com/scholar/${talent.id}`
+  const url = `http://lan.raycoding.com/scholar/${talent.id}`
   router.push({
     path: "iframe-view",
     query: { url: url }
