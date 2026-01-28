@@ -368,3 +368,37 @@ export interface TalentItem {
 
   city: string
 }
+
+/** 机构查询请求参数 */
+export interface AffiliationQueryParams {
+  /** 页码 */
+  page: number
+  /** 每页数量 */
+  pageSize: number
+  /** 搜索关键词 */
+  keyword?: string
+}
+
+/** 机构项 */
+export interface AffiliationItem {
+  /** 机构ID */
+  id: string
+  /** Logo地址 */
+  logo?: string
+  /** 机构名称 */
+  name: string
+  /** 注册城市 */
+  regCity?: string
+  /** 成立时间 */
+  establishmentTime?: string
+  /** 注册资本 */
+  regCapital?: string
+  /** 注册地址 */
+  regLocation?: string
+  /** 行业标签 */
+  industryTags?: string[]
+  /** 技术标签 */
+  technologyLabelTags?: string[]
+  /** 获奖标签 */
+  awardTags?: string[]
+}

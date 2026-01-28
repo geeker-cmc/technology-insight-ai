@@ -86,6 +86,15 @@ export const constantRoutes: RouteRecordRaw[] = [
         }
       },
       {
+        path: "affiliation-search",
+        component: () => import("@/views/affiliation-search/index.vue"),
+        meta: {
+          title: "机构搜索",
+          hidden: true,
+          keepAlive: true
+        }
+      },
+      {
         path: "advanced-tech-foresight",
         component: () => import("@/views/advanced-tech-foresight/index.vue"),
         meta: {

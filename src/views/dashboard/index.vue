@@ -54,7 +54,7 @@ const modules = [
     icon: "🗺",
     title: "知识图谱探索",
     description: "交互式四链关系图谱",
-    path: ""
+    path: "/affiliation-search"
   },
   {
     icon: "📊",

@@ -111,3 +111,13 @@ export function queryTalentListApi(params: Insight.TalentQueryParams) {
     withCredentials: true
   })
 }
+
+/** 查询机构列表 */
+export function queryAffiliationListApi(params: Insight.AffiliationQueryParams) {
+  return insightRequest<Insight.InsightResponse<{ result: Insight.PaginationResponse<Insight.AffiliationItem> }>>({
+    url: "/backend/tuijian-api/affiliations/query/V3_3",
+    method: "post",
+    data: params,
+    withCredentials: true
+  })
+}
