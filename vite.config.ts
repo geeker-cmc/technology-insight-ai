@@ -49,7 +49,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
           rewrite: (path) => path.replace(/^\/chat-api/, "")
         },
         "/landinn-api": {
-          target: "http://lan.raycoding.com",
+          target: "http://landinn--front--prod.webvpn.landinn.com",
           ws: true,
           /** 是否允许跨域 */
           changeOrigin: true,
